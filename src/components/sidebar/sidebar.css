@@ -1,0 +1,168 @@
+nav {
+    display: flex;
+    width: 350px;
+    height: 100vh;
+    background-color: #fff;
+    position: sticky;
+    float: left;
+    z-index: 10;
+}
+
+.sidebar-container {
+    width: 100%;
+    padding: 25px 10px;
+}
+
+.profile-section {
+    display: flex;
+    gap: 15px;
+    align-items: center;
+    position: relative;
+}
+
+.profile-section::after {
+    content: '';
+    width: 250px;
+    height: 3px;
+    background-color: #a18aff;
+    position: absolute;
+    top: 150%;
+    border-radius: 25px;
+    left: 10%;
+    
+}
+
+.profile-text p {
+    font-size: 18px;
+    font-weight: 600;
+}
+
+.profile-text .do-it{
+    color: #717082;
+    padding-bottom: 10px;
+    font-size: 16px;
+}
+
+.profile-text .name{
+    color: #a18aff;
+    font-size: 18px;
+}
+
+
+.profile-section img {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    border-radius: 50px;
+}
+
+.menu-section {
+    margin-top: 50px;
+    height: 50vh;
+}
+
+.container-menu-section{
+    width: 100%;
+    height: inherit;
+    padding: 0 25px;
+    padding-top: 200px;   
+}
+
+.sidebar-container-active{
+    transition: all .3s;
+}
+
+.sidebar-container-active{
+    display: flex;
+    flex-direction: column;
+    padding: 15px 0;
+    row-gap: 25px;
+}
+
+.sidebar-container-active a{
+    color: #717082;
+    font-weight: 500;
+    font-size: 18px;
+}
+
+.sidebar-container-active a.active,
+.sidebar-container-active .icon {
+    color: black;
+    transition: .3s;
+}
+
+.show-submenu{
+    padding: 10px 0;
+    margin-left: 25px;
+    animation: geser_kanan 3s ease-in-out;
+}
+
+@keyframes geser_kanan {
+    0%{
+        margin: 0;
+    }
+
+    30%{
+        margin-left: 25px;
+    }
+}
+
+.show-submenu li{
+    padding: 5px;
+}
+
+.show-submenu li::before{
+       content: '';
+       display: inline-block;
+       width: 15px;
+       height: 15px;
+       -moz-border-radius: 7.5px;
+       -webkit-border-radius: 7.5px;
+       border-radius: 7.5px;
+       margin-right: 5px;
+}
+
+.freelance::before{
+    background-color: #fd99af;
+}
+.personal::before{
+    background-color: #3fd4f4;
+}
+.work::before{
+    background-color: #fac608;
+}
+
+.hide-submenu{
+    display: none;
+}
+
+.container-menu-section li{
+    font-size: 16px;
+    font-weight: 500;
+}
+
+.logout-section {
+    display: flex;
+    align-items: center;
+    transform: translateY(150px) translateX(100px);  
+}
+
+.logout-section p {
+    font-size: 18px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: .3s;
+}
+
+.logout-icon {
+    transition: .2s;
+    vertical-align: middle;
+}
+
+.logout-section p:hover .logout-icon {
+    color: red;
+}
+
+.logout-section p:hover {
+    color: red;
+}
