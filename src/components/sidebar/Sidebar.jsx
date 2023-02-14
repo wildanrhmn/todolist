@@ -1,15 +1,20 @@
 import ProfilePic from "../../assets/profile.jpg";
 import "./sidebar.css";
-import { NavLink } from "react-router-dom";
-import { useState } from "react";
+import { NavLink, useLocation } from "react-router-dom";
+import { useEffect, useState } from "react";
 
 import { IoSettingsOutline } from 'react-icons/io5'
 import { BiBookBookmark, BiCalendarX, BiLogOut } from 'react-icons/bi'
 
 const Sidebar = () => {
   const [active, setActive] = useState(false)
-
+  const { pathname } = useLocation()
   
+  useEffect(() => {
+    if(pathname !== '/'){
+      setActive(false)
+    }
+  },[pathname])
   return (
     <nav>
       <div className="sidebar-container">
