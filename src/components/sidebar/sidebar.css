@@ -107,11 +107,14 @@ nav {
     }
 }
 
-.show-submenu li{
+.show-submenu a{
     padding: 5px;
+    display: flex;
+    align-items: center;
+    color: #000;
 }
 
-.show-submenu li::before{
+.show-submenu a::before{
        content: '';
        display: inline-block;
        width: 15px;

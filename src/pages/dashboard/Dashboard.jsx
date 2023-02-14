@@ -1,7 +1,6 @@
-import React, { useRef } from 'react'
+import React, { useRef, useContext, useState } from 'react'
 import "./dashboard.css"
 import { Form, Button } from 'react-bootstrap'
-import { useContext, useState } from 'react'
 import { todolistContext } from '../../states/todolist'
 
 const Dashboard = () => {
@@ -10,16 +9,25 @@ const Dashboard = () => {
   const [todo, setNewTodo] = useState('')
   const ref = useRef()
  
-console.info(todo)
-  const handleComplete = () => {
+  const handleComplete = (id) => {
+    let listTodo = todolist.map((task) => {
 
+      return task.id === id ? { ...task, completed: !task.completed} : {...task};
+    })
+    
+    let filteredItem = listTodo.filter(task => {
+      return !task.completed
+    })
+    setTodolist(filteredItem)
   }
 
   const handleAddToDo = (e) => {
-    e.preventDefault();
+    const id = todolist.length + 1
+    e.preventDefault()
     setTodolist((prev) => [
       ...prev,
       {
+        id: id,
         todo:todo,
         completed:false
       }
@@ -29,7 +37,6 @@ console.info(todo)
     setNewTodo("")
   }
   
-  console.info(todolist)
   return (
     <section className='main'>
       <div className='main-container'>
@@ -45,25 +52,26 @@ console.info(todo)
               <Form.Control placeholder='add new to do list' aria-describedby="basic-addon1" 
               ref={ref} value={todo} onChange={(e) => setNewTodo(e.target.value)} />
               <Button type='submit' className='button-form' 
-              onClick={(e) => handleAddToDo(e)}>Add</Button>
+              onClick={(e) =>handleAddToDo(e)}>Add</Button>
             </Form.Group>
           </Form>
         </div>
 
         <div className='todolist-section'>
           {todolist.map((todo) => {
-            return(
-              <div className='todo-container'>
-                <p>
-                   <span></span>
-                   <span></span>
-                   <span></span>
-                   {todo.todo}
-                </p>
-                <Button className='btn-done' onClick={handleComplete}>Done</Button>
-              </div>
-            )
-          })}
+            return todo.completed === false ?
+            <div className='todo-container'>
+            <p>
+               <span></span>
+               <span></span>
+               <span></span>
+               {todo.todo}
+            </p>
+            <Button className='btn-done' onClick={() =>{
+              handleComplete(todo.id);
+              }}>Done</Button>
+          </div> : null
+}     )}
         </div>
 
       </div>

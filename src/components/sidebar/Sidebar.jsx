@@ -1,6 +1,6 @@
 import ProfilePic from "../../assets/profile.jpg";
 import "./sidebar.css";
-import { NavLink, useLocation } from "react-router-dom";
+import { NavLink, useLocation, Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 
 import { IoSettingsOutline } from 'react-icons/io5'
@@ -35,9 +35,9 @@ const Sidebar = () => {
                  <BiBookBookmark color="#fd99af" size={24} className="icon" /> Today Tasks
                   </NavLink>
                     <ul className={active? 'show-submenu' : 'hide-submenu'}>
-                      <li className="freelance">Freelance</li>
-                      <li className="personal">Personal</li>
-                      <li className="work">Work</li>
+                      <Link to="/mytodolist" className="freelance">Freelance</Link>
+                      <Link to="/mytodolist" className="personal">Personal</Link>
+                      <Link to="/mytodolist" className="work">Work</Link>
                     </ul>
  
         
