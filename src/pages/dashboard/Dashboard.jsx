@@ -1,38 +1,35 @@
-import React from 'react'
+import React, { useRef } from 'react'
 import "./dashboard.css"
 import { Form, Button } from 'react-bootstrap'
-import { useState } from 'react'
-
+import { useContext, useState } from 'react'
+import { todolistContext } from '../../states/todolist'
 
 const Dashboard = () => {
 
-  const [todolist, setTodolist] = useState([
-    {
-      todo: "Play Elden Ring",
-      completed: false
-    },
-    {
-      todo: "Tiding up the bed",
-      completed: false
-    },
-    {
-      todo: "Meeting with a client",
-      completed: false
-    },
-    {
-      todo: "Mandi",
-      completed: false
-    },
-  ])
-
+  const {todolist, setTodolist} = useContext(todolistContext)
+  const [todo, setNewTodo] = useState('')
+  const ref = useRef()
+ 
+console.info(todo)
   const handleComplete = () => {
 
   }
 
   const handleAddToDo = (e) => {
     e.preventDefault();
-  }
+    setTodolist((prev) => [
+      ...prev,
+      {
+        todo:todo,
+        completed:false
+      }
+    ])
 
+    ref.current.focus()
+    setNewTodo("")
+  }
+  
+  console.info(todolist)
   return (
     <section className='main'>
       <div className='main-container'>
@@ -45,10 +42,10 @@ const Dashboard = () => {
         <div className='search-section'>
           <Form>
             <Form.Group className='input-list'>
-              <Form.Control placeholder='add new to do list'
-                aria-describedby="basic-addon1" />
-              <Button className='button-form' 
-              onClick={handleAddToDo}>Add</Button>
+              <Form.Control placeholder='add new to do list' aria-describedby="basic-addon1" 
+              ref={ref} value={todo} onChange={(e) => setNewTodo(e.target.value)} />
+              <Button type='submit' className='button-form' 
+              onClick={(e) => handleAddToDo(e)}>Add</Button>
             </Form.Group>
           </Form>
         </div>
